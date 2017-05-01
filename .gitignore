@@ -1,0 +1,6 @@
+.idea
+.DS_Store
+node_modules
+public/*
+!public/index.html
+source/javascript/data/dataset-result.json

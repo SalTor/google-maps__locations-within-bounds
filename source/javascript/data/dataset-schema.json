@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "title": {
+      "faker": "company.companyName"
+    },
+    "latitude": {
+      "faker": "address.latitude"
+    },
+    "longitude": {
+      "faker": "address.longitude"
+    },
+    "description": {
+      "faker": "company.catchPhrase"
+    }
+  },
+  "required": [ "title", "latitude", "longitude", "description" ]
+}
