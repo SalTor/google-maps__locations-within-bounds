@@ -12,54 +12,37 @@ import { addCommas } from "../helpers"
 let dataset_organized = require("../data/dataset-organized.json")
 
 
-interface GoogleMap {
-    default_lat: number
-    default_lng: number
-    default_zoom: number
-    location_markers: object[]
-    dataset: object
-    counter_for_total_locations: number
-    map: any
-    infowindow: any
-    search_lat__sw: number
-    search_lng__sw: number
-    search_lat__ne: number
-    search_lng__ne: number
-    search__locations_found: number
-}
+
 class GoogleMap extends Component<any, any> {
-    /**
-     * ===========================
-     *   Component Configuration
-     * ===========================
-     */
+    default_lat = 22.5550996
+    default_lng = 113.9137947
+    default_zoom = 5
+    location_markers = []
+    dataset = dataset_organized
+    counter_for_total_locations = 0
+    search__locations_found = 0
+    search_lat__sw = 0
+    search_lng__sw = 0
+    search_lat__ne = 0
+    search_lng__ne = 0
+    map = null
+    infowindow = null
+
     constructor() {
         super()
 
         this.state = {}
 
-        this.default_lat = 22.5550996
-        this.default_lng = 113.9137947
-        this.default_zoom = 5
-
-        this.location_markers = []
-        this.dataset = dataset_organized
-        this.counter_for_total_locations = 0
-        this.search__locations_found = 0
-        this.search_lat__sw = 0
-        this.search_lng__sw = 0
-        this.search_lat__ne = 0
-        this.search_lng__ne = 0
-
         let start:any = new Date()
+
         for(let i of Object.keys(this.dataset)) {
             this.dataset[i].map(() => this.counter_for_total_locations++)
         }
+
         let end:any = new Date()
+
         console.log(`${ addCommas(this.counter_for_total_locations) } locations read in ${ end - start }ms`)
     }
-
-    componentWillMount() {}
 
     componentDidMount() {
         this.createMap()
