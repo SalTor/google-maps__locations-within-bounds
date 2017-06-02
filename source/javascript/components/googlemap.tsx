@@ -160,22 +160,6 @@ class GoogleMap extends Component<any, any> {
         let { starting_index, ending_index, search__time_start } = params,
             direction = starting_index > ending_index ? -1 : 1
 
-        this.stuff(starting_index)
-
-        if(starting_index !== ending_index) {
-            this.performSearch(Object.assign(params, { starting_index: starting_index + direction }))
-        } else {
-            if(search__time_start) {
-                let search__time_end: any = new Date()
-
-                console.log(`${ this.search__locations_found } locations - ${ search__time_end - search__time_start }ms`)
-            }
-
-            this.search__locations_found = 0
-        }
-    }
-
-    stuff(starting_index) {
         let category = this.dataset[starting_index]
 
         for(let category_index in category) {
@@ -190,6 +174,18 @@ class GoogleMap extends Component<any, any> {
                     console.warn("Object doesn't have latitude property", location)
                 }
             }
+        }
+
+        if(starting_index !== ending_index) {
+            this.performSearch(Object.assign(params, { starting_index: starting_index + direction }))
+        } else {
+            if(search__time_start) {
+                let search__time_end: any = new Date()
+
+                console.log(`${ this.search__locations_found } locations - ${ search__time_end - search__time_start }ms`)
+            }
+
+            this.search__locations_found = 0
         }
     }
 }
