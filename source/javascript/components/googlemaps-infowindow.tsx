@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-class GoogleMapInfoWindow extends Component {
+class GoogleMapInfoWindow extends Component<any, any> {
     /**
      * ===========================
      *   Component Configuration

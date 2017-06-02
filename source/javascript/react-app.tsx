@@ -1,6 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import ApplicationShell from "./application-shell.js"
+
+import ApplicationShell from "./application-shell"
+
 
 import "../scss/index.scss"
 

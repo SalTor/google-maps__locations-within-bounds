@@ -3,7 +3,7 @@ import React, { Component } from "react"
 import GoogleMap from "./components/googlemap"
 
 
-class ApplicationShell extends Component {
+class ApplicationShell extends Component<any, any> {
     /**
      * ===========================
      *   Component Configuration

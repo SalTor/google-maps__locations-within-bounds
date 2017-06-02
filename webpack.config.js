@@ -1,7 +1,13 @@
 'use strict';
 
+const babel_options = {
+    "presets": [
+        "react", [ "es2015", { "modules": false } ], "es2016"
+    ]
+}
+
 const config = {
-    entry: "./source/javascript/react-app.js",
+    entry: "./source/javascript/react-app.tsx",
     output: {
         filename: "faker-data-map-bundle.js",
         path: __dirname + "/public/build/",
@@ -15,12 +21,25 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.js?$/,
+                test: /\.ts(x?)$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: "babel-loader",
-                options: {
-                    presets: ["react", "es2015"]
-                }
+                use: [
+                    {
+                        loader: "babel-loader",
+                        options: babel_options
+                    },
+                    { loader: "ts-loader" }
+                ]
+            },
+            {
+                test: /\.js?$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: "babel-loader",
+                        options: babel_options
+                    }
+                ]
             },
             {
                 test: /\.scss/,
@@ -38,6 +57,9 @@ const config = {
                 }
             }
         ]
+    },
+    resolve: {
+        extensions: [ ".ts", ".tsx", ".js" ]
     }
 }
 
